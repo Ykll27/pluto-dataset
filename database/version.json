@@ -1,0 +1,19 @@
+{
+  "dataset_version": "2026.09.2",
+  "database": "pluto.db",
+  "sha256": "bcf639fa2c524bae69eefe223423f80781425d5ef3ca712bbdbb43cc4eed3411",
+  "rows": {
+    "alternativas": 13403,
+    "content_scores": 274,
+    "descartes": 0,
+    "imagens": 1813,
+    "import_log": 1,
+    "noticias": 210,
+    "questao_imagens": 1824,
+    "questoes": 10665,
+    "redacao_coletanea": 20,
+    "redacao_comentarios": 0,
+    "redacao_repertorios": 0,
+    "redacao_temas": 9
+  }
+}
