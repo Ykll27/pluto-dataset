@@ -1,0 +1,56 @@
+name: Exportar dados do app
+
+# Regenera a pasta export/ (arquivos leves lidos pelo app Intensivo Fafram)
+# sempre que uma versão nova do dataset é publicada.
+on:
+  push:
+    branches: [main]
+    paths:
+      - database/version.json
+      - database/pluto.db.sha256
+      - tools/exportar_app.py
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exportar-app
+  cancel-in-progress: true
+
+jobs:
+  exportar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Baixar o pluto.db da Release mais recente
+        run: |
+          esperado=$(cut -d' ' -f1 database/pluto.db.sha256)
+          # o commit da versão pode chegar antes do arquivo da Release: tenta por até 20 minutos
+          for tentativa in $(seq 1 20); do
+            if curl -fsSL -o pluto.db "https://github.com/${{ github.repository }}/releases/latest/download/pluto.db"; then
+              obtido=$(sha256sum pluto.db | cut -d' ' -f1)
+              if [ "$obtido" = "$esperado" ]; then echo "banco conferido: $obtido"; exit 0; fi
+              echo "sha256 diferente (esperado $esperado, obtido $obtido)"
+            fi
+            sleep 60
+          done
+          echo "O pluto.db da Release não confere com database/pluto.db.sha256" >&2
+          exit 1
+
+      - name: Gerar export/
+        run: python3 tools/exportar_app.py pluto.db
+
+      - name: Publicar export/
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add export
+          if git diff --cached --quiet; then echo "export/ já está atualizada"; exit 0; fi
+          git commit -m "Atualiza export/ do app para o dataset $(python3 -c "import json;print(json.load(open('database/version.json'))['dataset_version'])")"
+          git push
