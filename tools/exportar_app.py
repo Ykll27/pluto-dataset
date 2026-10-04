@@ -114,7 +114,7 @@ def exportar_questoes(con):
 
 
 def exportar_redacao(con):
-    """Temas do Ensino Médio, de fonte com licença verificada, com pelo menos um texto motivador."""
+    """Temas do Ensino Médio, de fonte com licença verificada, com pelo menos um texto ou imagem de apoio."""
     verificadas = set()
     if "licenca_verificada" in colunas(con, "fontes"):
         verificadas = {r[0] for r in con.execute("select nome from fontes where licenca_verificada = 1")}
@@ -122,7 +122,7 @@ def exportar_redacao(con):
     tem_tags = "tags_json" in colunas(con, "redacao_temas")
     tem_imagem = "imagem" in colunas(con, "redacao_coletanea")
 
-    itens, com_texto, imagens = {}, set(), {}
+    itens, imagens = {}, {}
     for rid, tipo, titulo, fonte, texto, imagem in con.execute(
         "select redacao_id, tipo, titulo, fonte, texto, " + ("imagem" if tem_imagem else "null")
         + " from redacao_coletanea order by redacao_id, ordem"
@@ -136,13 +136,12 @@ def exportar_redacao(con):
                 imagens[rid] = imagens.get(rid, 0) + 1
         elif len(texto) > 80 and not LIXO.search(texto):
             itens.setdefault(rid, []).append([(titulo or "Texto motivador").strip(), texto, (fonte or "").strip()])
-            com_texto.add(rid)
 
     saida, vistos = [], set()
     campos = "id, tema, fonte, url" + (", status" if tem_status else ", null") + (", tags_json" if tem_tags else ", '[]'")
     for rid, tema, fonte, url, status, tags in con.execute(f"select {campos} from redacao_temas order by tema"):
         tema = (tema or "").strip()
-        if not tema or fonte not in verificadas or rid not in com_texto:
+        if not tema or fonte not in verificadas or rid not in itens:
             continue
         if tem_status and status != "APROVADO":
             continue
