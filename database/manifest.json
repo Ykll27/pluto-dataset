@@ -1,0 +1,156 @@
+{
+  "formato": 2,
+  "dataset_version": "2026.10.04",
+  "gerado_em": "2026-10-04T13:26:58+00:00",
+  "pluto_version": "0.5.0",
+  "database": "pluto.db",
+  "sha256": "a2090860f7a87d13227da49a4ccea33e497d35836c7772ccf5b328c0e120f889",
+  "tamanho_bytes": 297222144,
+  "schema_version": 6,
+  "contagens": {
+    "questoes": 121831,
+    "imagens": 1813,
+    "redacoes": 2983,
+    "noticias": 210,
+    "textos_base": 0,
+    "repertorios": 0,
+    "alternativas": 13403
+  },
+  "fontes": {
+    "enem.dev": {
+      "questoes": 2682
+    },
+    "simulado-concursos": {
+      "questoes": 119149
+    },
+    "Agência Brasil — direitos-humanos": {
+      "noticias": 8
+    },
+    "Agência Brasil — economia": {
+      "noticias": 10
+    },
+    "Agência Brasil — educacao": {
+      "noticias": 10
+    },
+    "Agência Brasil — esportes": {
+      "noticias": 9
+    },
+    "Agência Brasil — geral": {
+      "noticias": 9
+    },
+    "Agência Brasil — internacional": {
+      "noticias": 10
+    },
+    "Agência Brasil — justica": {
+      "noticias": 9
+    },
+    "Agência Brasil — politica": {
+      "noticias": 8
+    },
+    "Agência Brasil — saude": {
+      "noticias": 9
+    },
+    "Agência Brasil — últimas": {
+      "noticias": 10
+    },
+    "Câmara Notícias — administração pública": {
+      "noticias": 8
+    },
+    "Câmara Notícias — agropecuária": {
+      "noticias": 6
+    },
+    "Câmara Notícias — assistência social": {
+      "noticias": 6
+    },
+    "Câmara Notícias — cidades": {
+      "noticias": 7
+    },
+    "Câmara Notícias — ciência e tecnologia": {
+      "noticias": 9
+    },
+    "Câmara Notícias — comunicação": {
+      "noticias": 7
+    },
+    "Câmara Notícias — consumidor": {
+      "noticias": 7
+    },
+    "Câmara Notícias — direito e justiça": {
+      "noticias": 6
+    },
+    "Câmara Notícias — direitos humanos": {
+      "noticias": 1
+    },
+    "Câmara Notícias — economia": {
+      "noticias": 6
+    },
+    "Câmara Notícias — eleições": {
+      "noticias": 8
+    },
+    "Câmara Notícias — esportes": {
+      "noticias": 6
+    },
+    "Câmara Notícias — meio ambiente": {
+      "noticias": 4
+    },
+    "Câmara Notícias — política": {
+      "noticias": 5
+    },
+    "Câmara Notícias — relações exteriores": {
+      "noticias": 5
+    },
+    "Câmara Notícias — saúde": {
+      "noticias": 3
+    },
+    "Câmara Notícias — segurança": {
+      "noticias": 4
+    },
+    "Câmara Notícias — últimas notícias": {
+      "noticias": 20
+    },
+    "Plataforma Redigir": {
+      "redacoes": 2974
+    },
+    "UOL Banco de Redações": {
+      "redacoes": 9
+    }
+  },
+  "fontes_catalogo": [
+    {
+      "id": "simulado-concursos",
+      "nome": "Simulado de concursos (banco legado)",
+      "tipo": "questoes",
+      "url": null,
+      "licenca": null,
+      "licenca_verificada": 0
+    },
+    {
+      "id": "plataforma-redigir",
+      "nome": "Plataforma Redigir",
+      "tipo": "redacoes",
+      "url": "https://www.plataformaredigir.com.br/",
+      "licenca": "Autorização da Plataforma Redigir (quem autorizou e quando)",
+      "licenca_verificada": 1
+    }
+  ],
+  "integridade": "ok",
+  "rows": {
+    "alternativas": 13403,
+    "busca_docs": 125024,
+    "content_scores": 274,
+    "descartes": 2621,
+    "fontes": 2,
+    "imagens": 1813,
+    "import_log": 9,
+    "noticias": 210,
+    "pluto_schema_migrations": 6,
+    "questao_imagens": 1824,
+    "questao_textos_base": 0,
+    "questoes": 121831,
+    "redacao_coletanea": 5837,
+    "redacao_comentarios": 0,
+    "redacao_repertorios": 0,
+    "redacao_temas": 2983,
+    "staging_itens": 243606,
+    "textos_base": 0
+  }
+}
